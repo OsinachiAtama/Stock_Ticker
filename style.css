@@ -1,0 +1,26 @@
+
+body{ 
+    background-color: rgb(0, 0, 0);
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    width: 600px;
+    margin: 0 auto;
+}
+form{ 
+    margin: 150px auto;
+    justify-content: center;
+   
+    
+}
+
+button, #get_stk_info{ 
+    width: 150px;
+    height: 35px;
+    border-radius: 6px;
+}
+
+#doc { 
+    font-size: 20px;
+}
+
