@@ -50,7 +50,7 @@ http.createServer(function(req, res) {
 
         //Connect to Mongodb 
         const {MongoClient} = require('mongodb');
-        const connStr= "mongodb+srv://Osinachi:lordofhosts@cluster0.enps8.mongodb.net/"
+        const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
         const client = new MongoClient(connStr);
      
         async function run(){ 
@@ -92,7 +92,7 @@ http.createServer(function(req, res) {
         run();
 
     } else if (path == "/style.css") { 
-        file =  __dirname + "style.css";
+        file = "style.css";
         fs.readFile(file, function (err,  style) { 
             if (err) { 
                 res.writeHead(404); 
