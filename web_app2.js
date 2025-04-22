@@ -102,8 +102,8 @@ http.createServer(function(req, res) {
             }
             res.writeHead(200, {'Content-Type': 'text/css'} )
             res.write(style); 
-            res.end();
         })
+        res.end();
     }
 
     //Close server
