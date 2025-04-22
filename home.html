@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css" />
+    <title>Home</title>
+</head>
+<body>
+    <h1>STOCK TICKER</h1>
+    <form action="/process" method  = "get" onsubmit = "return validate_form()" >
+
+        <label for="sym_name">Please enter a stock ticker symbol or Company name and we will show you our records that match with it.</label> </br>
+        <input type="text" name="word" id="get_stk_info">
+        </br></br>
+        <p> Select whether you gave Stock ticker symbol or Company name: </br></br>
+            <input type="radio"  name="stk_or_comp" value = "stk_sym" id="stk_sym">
+            <label for="stk_sym">Stock Ticker Symbol</label> 
+            </br>
+
+            <input type="radio"  name="stk_or_comp" value = "comp_name" id = "comp_name">
+            <label for="comp_name">Company Name</label> 
+            </br>
+        </p>
+
+        <button >Submit Form</button>
+        
+    </form>
+
+    <script>
+        function validate_form() { 
+            let sym_radio = document.getElementById("stk_sym"); 
+            let comp_name_radio = document.getElementById("comp_name");
+            let text = document.getElementById("get_stk_info");
+            console.log(sym_radio.value, comp_name_radio.value)
+            if (!(sym_radio.checked || comp_name_radio.checked) || (text.value == "") ) { 
+                alert("Please ensure that you selected whether your input is a stock symbol or a company name and ensure that you put in an input text.")
+                return  false;
+            }
+            return true;
+        }
+    </script>
+
+</body>
+</html>
+
