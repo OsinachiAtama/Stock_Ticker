@@ -1,5 +1,5 @@
 {
-    "name": "Stock_Ticker",
+    "name": "stk-ticker",
     "version": "1.0.0",
     "description": "node app ",
     "main": "web_app2.js",
