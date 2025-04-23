@@ -38,21 +38,21 @@ http.createServer(function(req, res) {
         
         //Access GET parameters 
 
-        // var word = query.word; 
-        // var stk_or_comp = query.stk_or_comp; 
+        var word = query.word; 
+        var stk_or_comp = query.stk_or_comp; 
             
-        // console.log(word, stk_or_comp);
-        // if (stk_or_comp == "comp_name") { 
-        //     query = {"companyName" : word}; 
-        // } else if (stk_or_comp == "stk_sym") { 
-        //     query = {"stkTkr" : word};
-        // }
+        console.log(word, stk_or_comp);
+        if (stk_or_comp == "comp_name") { 
+            query = {"companyName" : word}; 
+        } else if (stk_or_comp == "stk_sym") { 
+            query = {"stkTkr" : word};
+        }
 
 
-        // //Connect to Mongodb 
-        // const {MongoClient} = require('mongodb');
-        // const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
-        // const client = new MongoClient(connStr);
+        //Connect to Mongodb 
+        const {MongoClient} = require('mongodb');
+        const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
+        const client = new MongoClient(connStr);
      
         // async function run(){ 
         //     try { 
@@ -91,7 +91,7 @@ http.createServer(function(req, res) {
         //     }
         // }
         // run();
-
+        res.end();
     } else if (path == "/style.css") { 
         file = "style.css";
         fs.readFile(file, function (err,  style) { 
