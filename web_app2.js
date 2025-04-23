@@ -2,8 +2,12 @@
 var http = require('http'); 
 var url = require('url'); 
 var fs = require('fs');
+const {MongoClient} = require('mongodb');
 var port = process.env.PORT || 3000;
+//Connect to Mongodb 
 
+const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
+const client = new MongoClient(connStr);
 
 //Create Server
 http.createServer(function(req, res) { 
@@ -19,25 +23,8 @@ http.createServer(function(req, res) {
             res.write(home); 
             res.end(); 
         })
-        
-    } else if (path == "/process") {
-
-        res.writeHead(200, {'Content-Type': 'text/html'}); 
-        res.write(`<!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Process</title>
-                <link rel="stylesheet" href="/style.css" />
-            </head>
-            <body>
-                Processing... </br>
-            </body>
-            </html>`);
-        
+    } else if (path == "/process") {        
         //Access GET parameters 
-
         var word = query.word; 
         var stk_or_comp = query.stk_or_comp; 
             
@@ -47,12 +34,6 @@ http.createServer(function(req, res) {
         } else if (stk_or_comp == "stk_sym") { 
             query = {"stkTkr" : word};
         }
-
-
-        //Connect to Mongodb 
-        const {MongoClient} = require('mongodb');
-        const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
-        const client = new MongoClient(connStr);
      
         async function run(){ 
             try { 
@@ -60,6 +41,20 @@ http.createServer(function(req, res) {
                 var dbo = client.db("Stock");
                 var collection = dbo.collection('PublicCompanies');           
                 var results = await collection.find(query).toArray(); 
+                res.writeHead(200, {'Content-Type': 'text/html'}); 
+                res.write(`<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Process</title>
+                        <link rel="stylesheet" href="/style.css" />
+                    </head>
+                    <body>
+                        Processing... </br>
+                    </body>
+                    </html>`);
+                
                 if (results.length == 0) { 
                     console.log("Sorry, your input does not match any of our records."); 
                     res.write("Sorry, your input does not match any of our records."); 
