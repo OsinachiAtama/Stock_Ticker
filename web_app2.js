@@ -38,59 +38,59 @@ http.createServer(function(req, res) {
         
         //Access GET parameters 
 
-        var word = query.word; 
-        var stk_or_comp = query.stk_or_comp; 
+        // var word = query.word; 
+        // var stk_or_comp = query.stk_or_comp; 
             
-        console.log(word, stk_or_comp);
-        if (stk_or_comp == "comp_name") { 
-            query = {"companyName" : word}; 
-        } else if (stk_or_comp == "stk_sym") { 
-            query = {"stkTkr" : word};
-        }
+        // console.log(word, stk_or_comp);
+        // if (stk_or_comp == "comp_name") { 
+        //     query = {"companyName" : word}; 
+        // } else if (stk_or_comp == "stk_sym") { 
+        //     query = {"stkTkr" : word};
+        // }
 
 
-        //Connect to Mongodb 
-        const {MongoClient} = require('mongodb');
-        const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
-        const client = new MongoClient(connStr);
+        // //Connect to Mongodb 
+        // const {MongoClient} = require('mongodb');
+        // const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
+        // const client = new MongoClient(connStr);
      
-        async function run(){ 
-            try { 
-                await client.connect();
-                var dbo = client.db("Stock");
-                var collection = dbo.collection('PublicCompanies');           
-                var results = await collection.find(query).toArray(); 
-                if (results.length == 0) { 
-                    console.log("Sorry, your input does not match any of our records."); 
-                    res.write("Sorry, your input does not match any of our records."); 
+        // async function run(){ 
+        //     try { 
+        //         await client.connect();
+        //         var dbo = client.db("Stock");
+        //         var collection = dbo.collection('PublicCompanies');           
+        //         var results = await collection.find(query).toArray(); 
+        //         if (results.length == 0) { 
+        //             console.log("Sorry, your input does not match any of our records."); 
+        //             res.write("Sorry, your input does not match any of our records."); 
 
-                } else { 
-                    res.write("<p id = 'doc'>");
-                    console.log("Here are the records that match your input: "); 
-                    res.write("<span>Here are the records that match your input:</span> <br> <br>"); 
+        //         } else { 
+        //             res.write("<p id = 'doc'>");
+        //             console.log("Here are the records that match your input: "); 
+        //             res.write("<span>Here are the records that match your input:</span> <br> <br>"); 
 
-                    results.forEach(function(doc) { 
+        //             results.forEach(function(doc) { 
                        
-                        for (field in doc){  
-                            if (field != "_id") { 
-                                console.log( field, ": ", doc[field]);
-                                res.write(`${field}: ${doc[field]}<br>`);
-                            }
-                        }
+        //                 for (field in doc){  
+        //                     if (field != "_id") { 
+        //                         console.log( field, ": ", doc[field]);
+        //                         res.write(`${field}: ${doc[field]}<br>`);
+        //                     }
+        //                 }
                         
-                    })
-                    res.write("</p>");
-                    console.log("\n");
-                }
+        //             })
+        //             res.write("</p>");
+        //             console.log("\n");
+        //         }
                
-                res.end();
+        //         res.end();
 
-            } catch (dbErr){ 
-                console.log("Database error: " + dbErr);
-                res.end();
-            }
-        }
-        run();
+        //     } catch (dbErr){ 
+        //         console.log("Database error: " + dbErr);
+        //         res.end();
+        //     }
+        // }
+        // run();
 
     } else if (path == "/style.css") { 
         file = "style.css";
