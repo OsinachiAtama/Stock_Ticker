@@ -63,7 +63,7 @@ http.createServer(function(req, res) {
                 if (results.length == 0) { 
                     console.log("Sorry, your input does not match any of our records."); 
                     res.write("Sorry, your input does not match any of our records."); 
-
+                    res.end();
                 } else { 
                     res.write("<p id = 'doc'>");
                     console.log("Here are the records that match your input: "); 
@@ -81,9 +81,8 @@ http.createServer(function(req, res) {
                     })
                     res.write("</p>");
                     console.log("\n");
+                    res.end();
                 }
-               
-                res.end();
 
             } catch (dbErr){ 
                 console.log("Database error: " + dbErr);
