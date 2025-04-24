@@ -2,6 +2,7 @@
 var http = require('http'); 
 var url = require('url'); 
 var fs = require('fs');
+var port = process.env.PORT || 3000;
 
 
 //Create Server
@@ -105,4 +106,4 @@ http.createServer(function(req, res) {
         })
     }
 
-}).listen(8080)
+}).listen(port)
