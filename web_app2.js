@@ -2,7 +2,6 @@
 var http = require('http'); 
 var url = require('url'); 
 var fs = require('fs');
-var port = process.env.PORT || 3000;
 
 
 //Create Server
@@ -21,7 +20,6 @@ http.createServer(function(req, res) {
         })
         
     } else if (path == "/process") {
-        console.log("Got into process function");
 
         res.writeHead(200, {'Content-Type': 'text/html'}); 
         res.write(`<!DOCTYPE html>
@@ -54,7 +52,7 @@ http.createServer(function(req, res) {
         const {MongoClient} = require('mongodb');
         const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
         const client = new MongoClient(connStr);
-        console.log("Got to async fxn");
+     
         async function run(){ 
             try { 
                 await client.connect();
@@ -82,18 +80,20 @@ http.createServer(function(req, res) {
                     })
                     res.write("</p>");
                     console.log("\n");
-                     res.end();
+                    
                 }
+               
+                res.end();
 
             } catch (dbErr){ 
                 console.log("Database error: " + dbErr);
-                res.write("Database error: " + dbErr);
-                res.end();
+                res.end("Database error: " + dbErr);
             }
         }
         run();
+
     } else if (path == "/style.css") { 
-        file = "style.css";
+        file =  __dirname +  "/style.css";
         fs.readFile(file, function (err,  style) { 
             if (err) { 
                 res.writeHead(404); 
@@ -101,11 +101,8 @@ http.createServer(function(req, res) {
                 return; 
             }
             res.writeHead(200, {'Content-Type': 'text/css'} )
-            res.write(style); 
-            res.end();
+            res.end(style);
         })
     }
 
-    //Close server
-    // res.end();
-}).listen(port)
+}).listen(8080)
