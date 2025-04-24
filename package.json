@@ -17,7 +17,7 @@
   },
     "dependencies": {
         "mongodb" : "latest",
-  },
+  }
 
     "homepage": ""
 
