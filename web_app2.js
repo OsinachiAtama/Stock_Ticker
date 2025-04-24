@@ -2,6 +2,7 @@
 var http = require('http'); 
 var url = require('url'); 
 var fs = require('fs');
+const {MongoClient} = require('mongodb');
 var port = process.env.PORT || 3000;
 
 
@@ -50,7 +51,6 @@ http.createServer(function(req, res) {
 
 
         //Connect to Mongodb 
-        const {MongoClient} = require('mongodb');
         const connStr= "mongodb+srv://Osinachi:mongopswd@cluster0.enps8.mongodb.net/"
         const client = new MongoClient(connStr);
      
