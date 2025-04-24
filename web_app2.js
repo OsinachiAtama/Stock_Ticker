@@ -84,7 +84,7 @@ http.createServer(function(req, res) {
                     
                 }
                
-                res.end("We are in processing");
+                res.end();
 
             } catch (dbErr){ 
                 console.log("Database error: " + dbErr);
