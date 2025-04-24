@@ -104,6 +104,9 @@ http.createServer(function(req, res) {
             res.writeHead(200, {'Content-Type': 'text/css'} )
             res.end(style);
         })
-    }
+    }} else if (path == "/favicon.ico") {
+    res.writeHead(204); // No Content
+    res.end();
+}
 
 }).listen(port)
